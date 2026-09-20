@@ -46,12 +46,29 @@ homesweethome create my-module --repo sousa99/my-module
 ```
 
 This clones the [module template](https://github.com/sousa99/home-sweet-home-module-template),
-fills in `module.config.yaml` for you, and runs the scaffold. Then:
+fills in `module.config.yaml` for you, and runs the scaffold — **locally, into the current
+directory** (folder named after the `--repo` repo name, e.g. `./my-module`). Then:
 
 ```bash
 cd my-module
 node scripts/scaffold.mjs --check   # verify everything is in sync
 ```
+
+The CLI does **not** create the GitHub repository. Create it from the shared template, then
+push:
+
+```bash
+# create the repo from the template (or use the "Use this template" button on GitHub)
+gh repo create sousa99/my-module --public --template sousa99/home-sweet-home-module-template
+
+# then initialize + push the scaffolded module
+cd my-module
+git init && git add . && git commit -m "chore: scaffold my-module from the Home Sweet Home template"
+git remote add origin https://github.com/sousa99/my-module.git
+git push -u origin main
+```
+
+Use `--dir <path>` to scaffold into an explicit directory instead of the current one.
 
 ---
 
