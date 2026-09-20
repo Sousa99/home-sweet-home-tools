@@ -1,9 +1,13 @@
 {
-  "name": "@homesweethome/config",
+  "name": "@sousa99/homesweethome-config",
   "version": "0.1.0",
   "description": "Shared eslint / prettier / tsconfig presets for Home Sweet Home modules",
-  "private": true,
   "type": "module",
+  "repository": "https://github.com/sousa99/home-sweet-home-tools.git",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/",
+    "access": "public"
+  },
   "exports": {
     "./eslint": "./eslint.js",
     "./prettier": "./prettier.js",

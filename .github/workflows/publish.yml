@@ -1,0 +1,45 @@
+name: Publish
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/config/package.json'
+      - 'packages/cli/package.json'
+      - '.releaserc.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    name: 🚀 Publish packages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          registry-url: https://npm.pkg.github.com/
+
+      - name: 📦 Install
+        run: |
+          echo "::group::pnpm install"
+          pnpm install --frozen-lockfile
+          echo "::endgroup::"
+
+      - name: 📦 Publish config package
+        run: pnpm publish --no-git-checks --filter @sousa99/homesweethome-config
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📦 Publish CLI package
+        run: pnpm publish --no-git-checks --filter @sousa99/homesweethome
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
