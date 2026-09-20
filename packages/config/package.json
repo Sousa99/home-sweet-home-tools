@@ -1,0 +1,12 @@
+{
+  "name": "@homesweethome/config",
+  "version": "0.1.0",
+  "description": "Shared eslint / prettier / tsconfig presets for Home Sweet Home modules",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./eslint": "./index.js",
+    "./prettier": "./index.js",
+    "./tsconfig.base": "./tsconfig.base.json"
+  }
+}

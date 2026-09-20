@@ -1,0 +1,13 @@
+{
+  "name": "homesweethome",
+  "version": "0.1.0",
+  "description": "CLI for creating Home Sweet Home module repositories",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "homesweethome": "./cli.mjs"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}
